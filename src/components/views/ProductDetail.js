@@ -23,7 +23,7 @@ const ProductDetail = ({ navigation }) => {
     })[0];
     const { title, image, price } = item;
     const { wrapper, content, titleView, titleText, imageView, descriptions, imageStyle, priceView, priceText, buttonLayout, buttonView, buttonText } = styles;
-    
+
     return (
         <View style={wrapper}>
             <View style={content}>
@@ -37,7 +37,7 @@ const ProductDetail = ({ navigation }) => {
                     <View style={priceView}>
                         <Text style={priceText}>PRICE: { price }</Text>
                     </View>
-                    <TouchableOpacity style={buttonLayout} onPress={() => console.log("haha")}>
+                    <TouchableOpacity style={buttonLayout} onPress={() => navigation.navigate("Payment")}>
                         <View style={buttonView}>
                             <Text style={buttonText}>BUY NOW</Text>
                         </View>
