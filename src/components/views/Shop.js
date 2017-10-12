@@ -17,10 +17,10 @@ const dummyItemList = [
     { id: 12, title: "SPRINT 125 IGET ABS RED", image: "http://www.vespa.com/dam/jcr:a8e794cb-8c7b-4395-9d33-1ba7514d8b44/vespa-sprint-rosso-laterale-dx.png", price: "5500" }
 ];
 
-const Shop = () => {
+const Shop = ({ navigation }) => {
     const products = dummyItemList.map((item) => {
         const { id, title, image, price } = item;
-        return <ProductItem key={id} id={id} title={title} price={price} image={image} onClick={() => console.log("haha")}/>;
+        return <ProductItem key={id} id={id} title={title} price={price} image={image} onPress={(id) => navigation.navigate("ProductDetail", { id })}/>;
     });
 
     return (

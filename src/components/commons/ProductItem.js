@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-const ProductItem = ({ id, title, image, price }) => {
+const ProductItem = ({ id, title, image, price, onPress }) => {
     return (
-        <View style={styles.wrapper}>
+        <TouchableOpacity style={styles.wrapper} onPress={() => onPress(id)}>
             <View style={styles.imageView}>
                 <Image style={styles.image} source={{ uri: image }} />
             </View>
@@ -15,7 +15,7 @@ const ProductItem = ({ id, title, image, price }) => {
             <Text style={styles.price}>
                 {price}
             </Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 
