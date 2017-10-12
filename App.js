@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { StackNavigator } from "react-navigation";
-import { Shop } from "./src/components/views";
+import { Shop, ProductDetail } from "./src/components/views";
 
 const Navigator = StackNavigator({
     Shop: {
         screen: Shop,
         navigationOptions: {
             title: "Shop"
+        }
+    },
+    ProductDetail: {
+        screen: ProductDetail,
+        navigationOptions: {
+            path: "product/:id",
+            title: "Product"
         }
     }
 });

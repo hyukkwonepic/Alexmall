@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { ProductItem } from "../commons";
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 
 const dummyItemList = [
     { id: 1, title: "PRIMAVERA 50 2T", image: "http://www.vespa.com/dam/jcr:302fea47-d59a-4619-8786-434405047978/Primavera-MY17-50-2t4v-nero-vulcano___.png", price: "2900" },
@@ -17,49 +16,88 @@ const dummyItemList = [
     { id: 12, title: "SPRINT 125 IGET ABS RED", image: "http://www.vespa.com/dam/jcr:a8e794cb-8c7b-4395-9d33-1ba7514d8b44/vespa-sprint-rosso-laterale-dx.png", price: "5500" }
 ];
 
-const Shop = ({ navigation }) => {
-    const products = dummyItemList.map((item) => {
-        const { id, title, image, price } = item;
-        return <ProductItem key={id} id={id} title={title} price={price} image={image} onPress={(id) => navigation.navigate("ProductDetail", { id })}/>;
-    });
-
+const ProductDetail = ({ navigation }) => {
+    const { id } = navigation.state.params;
+    const item = dummyItemList.filter((item) => {
+        return item.id === id;
+    })[0];
+    const { title, image, price } = item;
+    const { wrapper, content, titleView, titleText, imageView, descriptions, imageStyle, priceView, priceText, buttonLayout, buttonView, buttonText } = styles;
+    
     return (
-        <View style={styles.wrapper}>
-            <View style={styles.titleView}>
-                <Text style={styles.text}>
-                    VESPA
-                </Text>
-            </View>
-            <ScrollView style={styles.scrollView} >
-                <View style={styles.productGroup}>
-                    { products }
+        <View style={wrapper}>
+            <View style={content}>
+                <View style={imageView}>
+                    <Image resizeMode="contain" style={imageStyle} source={{ uri: image }} />
                 </View>
-            </ScrollView>         
+                <View style={descriptions}>
+                    <View style={titleView}>
+                        <Text style={titleText}>{ title }</Text>
+                    </View>
+                    <View style={priceView}>
+                        <Text style={priceText}>PRICE: { price }</Text>
+                    </View>
+                    <TouchableOpacity style={buttonLayout} onPress={() => console.log("haha")}>
+                        <View style={buttonView}>
+                            <Text style={buttonText}>BUY NOW</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     wrapper: {
-        backgroundColor: "#fff",
-        flex: 1
-    },
-    scrollView: {
-    },
-    productGroup: {
-        flexDirection: "row",
-        flexWrap: "wrap",
+        flex: 1,
         backgroundColor: "#fff"
     },
-    titleView: {
-        marginTop: 10,
-        marginBottom: 10,
+    content: {
+        flex: 1
     },
-    text: {
-        fontSize: 25,
+    imageView: {
+        flex: 1
+    },
+    imageStyle: {
+        flex: 1,
+        width: null,
+        height: null
+    },
+    descriptions: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center"
+    },
+    titleView: {
+    },
+    titleText: {
+        fontSize: 20,
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "left"
+    },
+    priceView: {
+        marginTop: 20
+    },
+    priceText: {
+        fontSize: 15,
+        color: "#333",
+        textAlign: "left"
+    },
+    buttonLayout: {
+        marginTop: 20,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    buttonView: {
+        borderColor: "#333",
+        borderWidth: 1,
+        padding: 10
+    },
+    buttonText: {
+        
     }
-})
+});
 
-export { Shop };
+export { ProductDetail };
