@@ -34,7 +34,7 @@ const Shop = ({ navigation }) => {
                 <View style={styles.productGroup}>
                     { products }
                 </View>
-            </ScrollView>         
+            </ScrollView>
         </View>
     );
 };

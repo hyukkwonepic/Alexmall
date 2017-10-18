@@ -1,26 +1,18 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { StackNavigator } from "react-navigation";
-import { Shop, ProductDetail, Payment } from "./src/components/views";
+import { Shop, ProductDetail, Payment, PaymentPrev } from "./src/components/views";
 
-const Navigator = StackNavigator({
-    Shop: {
-        screen: Shop,
-        navigationOptions: {
-            title: "Shop"
-        }
+const Navigator = StackNavigator(
+    {
+        Shop: { screen: Shop },
+        ProductDetail: { screen: ProductDetail },
+        Payment: { screen: PaymentPrev }
     },
-    ProductDetail: {
-        screen: ProductDetail,
-        navigationOptions: {
-            path: "product/:id",
-            title: "Product"
-        }
-    },
-    Payment: {
-        screen: Payment
+    {
+        mode: "modal"
     }
-});
+);
 
 class App extends Component {
     render() {

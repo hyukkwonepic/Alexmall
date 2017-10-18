@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, WebView, View, Text, Alert, Linking } from "react-native";
 const html = require("../../webviews/webview.html");
+import IAmPort from 'react-native-iamport';
 
 class Payment extends Component {
 
